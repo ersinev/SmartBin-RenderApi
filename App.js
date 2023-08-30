@@ -32,8 +32,6 @@ function App() {
         index === dataIndex ? { ...section, weight: newWeight } : section
       )
     );
-
-  
   };
 
   const handleCapacityChange = (index, newCapacity) => {
@@ -43,30 +41,34 @@ function App() {
       )
     );
   };
- 
+
   const fetchChartData = async (section, index) => {
-   
     try {
       // Fetch data from the new API
       const response = await fetch(
         `https://smartbin-cf8d.onrender.com/fetch-weights/${section.feedKey}`
       );
       const chartData = await response.json();
-        
+
       if (chartData.length > 0) {
-        const latestData = chartData[chartData.length-1];
+        const latestData = chartData[chartData.length - 1];
         // console.log(latestData)
         // console.log(index)
         // console.log(hiddenSections)
 
         setHiddenSections((prevHiddenSections) => {
           return prevHiddenSections.map((s, i) =>
-            s.data.feedKey === section.feedKey 
-              ? { ...s, chartData, latestData, showChart: s.showChart !== undefined ? s.showChart : true } 
+            s.data.feedKey === section.feedKey
+              ? {
+                  ...s,
+                  chartData,
+                  latestData,
+                  showChart: s.showChart !== undefined ? s.showChart : true,
+                }
               : s
-          )
+          );
         });
-      
+
         //setcounter((a)=> a+2)
       }
     } catch (error) {
@@ -80,11 +82,9 @@ function App() {
         i === index ? { ...section, showChart: !section.showChart } : section
       )
     );
-    
   };
 
   const startFetching = async (data, index) => {
-    
     fetchChartData(data, index);
 
     setFetchingData(true);
@@ -99,12 +99,10 @@ function App() {
       {
         data: { ...data },
         latestData: { weight: 0 },
-        showChart: true,  
+        showChart: true,
         chartData: [],
       },
     ]);
-
-    
 
     if (hiddenSectionsRef.current) {
       hiddenSectionsRef.current.scrollIntoView({ behavior: "smooth" });

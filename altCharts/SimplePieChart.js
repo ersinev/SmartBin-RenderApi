@@ -4,7 +4,7 @@ import { ResponsivePie } from "@nivo/pie";
 function SimplePieChart({ chartData }) {
   const lastDataForDate = new Map();
 
-  chartData.forEach(item => {
+  chartData.forEach((item) => {
     lastDataForDate.set(item.date, item);
   });
 
@@ -15,16 +15,16 @@ function SimplePieChart({ chartData }) {
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
   // Filter to only include the last 30 days' data
-  const latest30DaysData = dataArray.filter(item => new Date(item.date) >= thirtyDaysAgo);
+  const latest30DaysData = dataArray.filter(
+    (item) => new Date(item.date) >= thirtyDaysAgo
+  );
 
   // Convert the last 30 days data for the pie chart
   const pieData = latest30DaysData.map((item) => ({
     id: item.date,
     label: item.date,
-    value: item.uv
+    value: item.uv,
   }));
-
-  
 
   return (
     <div style={{ height: 300 }}>
