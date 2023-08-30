@@ -13,17 +13,21 @@ function MonthlyChart({ data, showModal, handleClose, capacity }) {
     if (data) {
       const fetchData = async () => {
         try {
-          const response = await fetch(`https://smartbin-cf8d.onrender.com/fetch-weights/${data.feedKey}`);
+          const response = await fetch(
+            `https://smartbin-cf8d.onrender.com/fetch-weights/${data.feedKey}`
+          );
           if (response.ok) {
             const responseData = await response.json();
             if (responseData && responseData.length > 0) {
-              setChartData(responseData.map((item) => {
-                return {
-                  uv: Math.round(parseFloat(item.weight)),
-                  date: item.timestamp.split("T")[0],
-                  className: data.className,
-                };
-              }));
+              setChartData(
+                responseData.map((item) => {
+                  return {
+                    uv: Math.round(parseFloat(item.weight)),
+                    date: item.timestamp.split("T")[0],
+                    className: data.className,
+                  };
+                })
+              );
             }
           }
         } catch (error) {

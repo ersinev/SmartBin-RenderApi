@@ -156,7 +156,8 @@
   table-layout: fixed;
 }
 
-.data-table th, .data-table td {
+.data-table th,
+.data-table td {
   width: calc(100% / 7);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -164,7 +165,7 @@
 }
 
 .data-table th {
-  background-color: #42A790;
+  background-color: #42a790;
   color: white;
   position: sticky;
   top: 0;
@@ -258,7 +259,8 @@ button:hover {
   display: block;
 }
 
-.table-responsive, .scrollable-table {
+.table-responsive,
+.scrollable-table {
   padding-bottom: 0;
   margin-bottom: 0;
 }
@@ -295,47 +297,45 @@ button:hover {
 
 @media (max-width: 600px) {
   .garbage-container {
-      width: 150px;
-      height: 220px;
+    width: 150px;
+    height: 220px;
   }
 
   .input-row {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .chart-container {
-      width: 250px;
-      height: 328px;
+    width: 250px;
+    height: 328px;
   }
 }
 
 @media (max-width: 768px) {
   button {
-      padding: 6px 12px;
-      font-size: 0.9rem;
-      
+    padding: 6px 12px;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 576px) {
   button {
-      padding: 4px 8px;
-      font-size: 0.8rem;
-      margin: 1px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    margin: 1px;
   }
- 
 }
 
 @media (max-width: 768px) {
-  .data-table th, .data-table td {
-      font-size: 0.9rem;
+  .data-table th,
+  .data-table td {
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 576px) {
-  .data-table th, .data-table td {
-      font-size: 0.8rem;
+  .data-table th,
+  .data-table td {
+    font-size: 0.8rem;
   }
 }
-
-
