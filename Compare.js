@@ -1,14 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ResponsiveContainer, LabelList } from 'recharts';
-import { BsBarChart } from 'react-icons/bs';
+import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Cell,
+  ResponsiveContainer,
+  LabelList,
+} from "recharts";
+import { BsBarChart } from "react-icons/bs";
 
 const CustomBarLabel = (props) => {
   const { x, y, width, value } = props;
   const xOffset = x + width / 2;
   const yOffset = y - 10;
   return (
-    <text style={{ fontWeight: "bolder" }} x={xOffset} y={yOffset} fill="red" textAnchor="middle" dy={-6}>
+    <text
+      style={{ fontWeight: "bolder" }}
+      x={xOffset}
+      y={yOffset}
+      fill="red"
+      textAnchor="middle"
+      dy={-6}
+    >
       {value}
     </text>
   );
@@ -22,7 +39,9 @@ export default function Compare() {
     setIsChartModalOpen(true);
 
     try {
-      const response = await fetch('https://smartbin-cf8d.onrender.com/fetch-all-weights');
+      const response = await fetch(
+        "https://smartbin-cf8d.onrender.com/fetch-all-weights"
+      );
 
       if (response.ok) {
         const allData = await response.json();
@@ -31,31 +50,33 @@ export default function Compare() {
 
         let uniqueDeviceData = {};
 
-        allData.forEach(item => {
+        allData.forEach((item) => {
           uniqueDeviceData[item.deviceId] = item.weight;
         });
 
         console.log("Unique Device Data:", uniqueDeviceData); // Debug output
-       
-        const chartData = Object.keys(uniqueDeviceData).map(deviceId => ({
+
+        const chartData = Object.keys(uniqueDeviceData).map((deviceId) => ({
           uv: Math.round(parseFloat(uniqueDeviceData[deviceId])),
-          className: deviceId
+          className: deviceId,
         }));
 
         console.log("Chart Data:", chartData); // Debug output
 
         setAllFetchedChartData(chartData);
       } else {
-        console.warn('Failed fetching data');
+        console.warn("Failed fetching data");
       }
     } catch (error) {
-      console.warn('Error fetching or processing data:', error);
+      console.warn("Error fetching or processing data:", error);
     }
   };
 
   return (
     <>
-      <Button className='compareBtn' onClick={handleOpenChartModal}><BsBarChart /></Button>
+      <Button className="compareBtn" onClick={handleOpenChartModal}>
+        <BsBarChart />
+      </Button>
       <Modal
         show={isChartModalOpen}
         onHide={() => setIsChartModalOpen(false)}
@@ -69,15 +90,24 @@ export default function Compare() {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={allFetchedChartData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="className" angle={-30} textAnchor="end" interval={0} height={60} />
+              <XAxis
+                dataKey="className"
+                angle={-30}
+                textAnchor="end"
+                interval={0}
+                height={60}
+              />
               <YAxis />
               <Tooltip />
               <Bar dataKey="uv" fill="#8884d8">
-                {
-                  allFetchedChartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={`hsla(${(index * (360 / allFetchedChartData.length))}, 70%, 50%, 1)`} />
-                  ))
-                }
+                {allFetchedChartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={`hsla(${
+                      index * (360 / allFetchedChartData.length)
+                    }, 70%, 50%, 1)`}
+                  />
+                ))}
                 <LabelList dataKey="uv" content={<CustomBarLabel />} />
               </Bar>
             </BarChart>

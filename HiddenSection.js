@@ -8,13 +8,14 @@ function HiddenSection({
   index,
   fetchChartData,
   toggleChart,
-  handleWeightChange,
-  fetchingData,
+
   setHiddenSections,
   hiddenSectionsRef,
 }) {
   const [isHidden, setIsHidden] = useState(true);
-  const percentage = section.latestData ? (section.latestData.weight / section.data.capacity) * 100 : 0;
+  const percentage = section.latestData
+    ? (section.latestData.weight / section.data.capacity) * 100
+    : 0;
 
   useEffect(() => {
     if (percentage > 80) {
@@ -61,7 +62,9 @@ function HiddenSection({
       {section.showChart ? (
         <>
           <GarbageAnimation
-            fillPercentage={(section.latestData?.weight / section.data.capacity) * 100}
+            fillPercentage={
+              (section.latestData?.weight / section.data.capacity) * 100
+            }
           />
         </>
       ) : (
@@ -83,10 +86,14 @@ function HiddenSection({
         <div ref={hiddenSectionsRef}>
           Garbage Fill Percentage:{" "}
           <span style={{ fontSize: "larger", fontWeight: "bolder" }}>
-            {Math.floor((section.latestData.weight / section.data.capacity) * 100)}%
+            {Math.floor(
+              (section.latestData.weight / section.data.capacity) * 100
+            )}
+            %
           </span>
           <p style={{ color: "red" }} hidden={isHidden}>
-            <span style={{ fontWeight: "bolder" }}>WARNING!!!</span> Please empty the trash.
+            <span style={{ fontWeight: "bolder" }}>WARNING!!!</span> Please
+            empty the trash.
           </p>
         </div>
       )}
