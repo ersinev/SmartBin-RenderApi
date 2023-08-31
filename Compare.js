@@ -46,7 +46,7 @@ export default function Compare() {
       if (response.ok) {
         const allData = await response.json();
 
-        console.log("All Data:", allData); // Debug output
+        
 
         let uniqueDeviceData = {};
 
@@ -54,14 +54,14 @@ export default function Compare() {
           uniqueDeviceData[item.deviceId] = item.weight;
         });
 
-        console.log("Unique Device Data:", uniqueDeviceData); // Debug output
+        
 
         const chartData = Object.keys(uniqueDeviceData).map((deviceId) => ({
           uv: Math.round(parseFloat(uniqueDeviceData[deviceId])),
           className: deviceId,
         }));
 
-        console.log("Chart Data:", chartData); // Debug output
+       
 
         setAllFetchedChartData(chartData);
       } else {

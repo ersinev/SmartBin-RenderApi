@@ -10,9 +10,10 @@ import Compare from "./Compare";
 
 function App() {
   const [feedKey, setFeedKey] = useState("");
-
+  
   const [schoolName, setSchoolName] = useState("");
   const [className, setClassName] = useState("");
+  const [email, setEmail] = useState("")
   const [capacity, setCapacity] = useState(1000);
   const [fetchingData, setFetchingData] = useState(false);
   const [savedData, setSavedData] = useState([]);
@@ -90,7 +91,7 @@ function App() {
     setFetchingData(true);
     setSchoolName(data.schoolName);
     setClassName(data.className);
-
+    setEmail(data.email)
     setFeedKey(data.feedKey);
     setCapacity(data.capacity);
 
@@ -113,7 +114,7 @@ function App() {
     const newData = {
       schoolName,
       className,
-
+      email,
       feedKey,
 
       capacity,
@@ -123,7 +124,7 @@ function App() {
     setSavedData(updatedSavedData);
     setSchoolName("");
     setClassName("");
-
+    setEmail("")
     setFeedKey("");
 
     setCapacity(1000);
@@ -191,8 +192,10 @@ function App() {
         <InputFields
           schoolName={schoolName}
           className={className}
+          email={email}
           feedKey={feedKey}
           capacity={capacity}
+          setEmail={setEmail}
           setSchoolName={setSchoolName}
           setClassName={setClassName}
           setFeedKey={setFeedKey}

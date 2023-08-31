@@ -3,12 +3,14 @@ import React from "react";
 function InputFields({
   schoolName,
   className,
+  email,
   feedKey,
   capacity,
   setSchoolName,
   setClassName,
   setFeedKey,
   setCapacity,
+  setEmail,
   saveData,
 }) {
   return (
@@ -36,6 +38,14 @@ function InputFields({
             type="text"
             value={feedKey}
             onChange={(e) => setFeedKey(e.target.value)}
+          />
+        </div>
+        <div className="input-cell">
+          <label>Email</label>
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="input-cell">

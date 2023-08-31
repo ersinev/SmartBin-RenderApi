@@ -17,11 +17,41 @@ function HiddenSection({
     ? (section.latestData.weight / section.data.capacity) * 100
     : 0;
 
+  
+
+  // -------------------------------WARNING / EMAIL PART --------------------------------------------------
   useEffect(() => {
     if (percentage > 80) {
       setIsHidden(false);
+      // Trigger API call to send an email
+      const emailData = {
+        to: section.data.email,
+        subject: "Garbage Fill Warning",
+        text: `The garbage fill percentage for ${section.data.schoolName}, ${section.data.className} is over 80%. Please empty the trash.`,
+      };
+      
+      fetch("https://smartbin-cf8d.onrender.com/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(emailData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Successfully sent email:", data);
+        })
+
+        .catch((error) => {
+          console.error("There was an error sending the email", error);
+        });
     }
-  }, [percentage]);
+  }, [
+    percentage,
+    section.data.className,
+    section.data.schoolName,
+    section.data.email,
+  ]);
 
   return (
     <div key={index} className="hidden-section">

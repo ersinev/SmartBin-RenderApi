@@ -27,6 +27,7 @@ function DataTable({
               <th>School Name</th>
               <th>Class Name</th>
               <th>Feed Key</th>
+              <th>Email</th>
               <th>Capacity</th>
               <th className="actions-header">
                 Actions
@@ -50,6 +51,7 @@ function DataTable({
                   <td>{data.schoolName}</td>
                   <td>{data.className}</td>
                   <td>{data.feedKey}</td>
+                  <td>{data.email}</td>
                   <td>{renderCapacityInput(data, index)}</td>
                   <td className="button-container">
                     <Button
