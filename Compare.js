@@ -46,22 +46,16 @@ export default function Compare() {
       if (response.ok) {
         const allData = await response.json();
 
-        
-
         let uniqueDeviceData = {};
 
         allData.forEach((item) => {
           uniqueDeviceData[item.deviceId] = item.weight;
         });
 
-        
-
         const chartData = Object.keys(uniqueDeviceData).map((deviceId) => ({
           uv: Math.round(parseFloat(uniqueDeviceData[deviceId])),
           className: deviceId,
         }));
-
-       
 
         setAllFetchedChartData(chartData);
       } else {
