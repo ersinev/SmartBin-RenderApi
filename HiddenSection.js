@@ -17,8 +17,6 @@ function HiddenSection({
     ? (section.latestData.weight / section.data.capacity) * 100
     : 0;
 
-  
-
   // -------------------------------WARNING / EMAIL PART --------------------------------------------------
   useEffect(() => {
     if (percentage > 80) {
@@ -29,7 +27,7 @@ function HiddenSection({
         subject: "Garbage Fill Warning",
         text: `The garbage fill percentage for ${section.data.schoolName}, ${section.data.className} is over 80%. Please empty the trash.`,
       };
-      
+
       fetch("https://smartbin-cf8d.onrender.com/send-email", {
         method: "POST",
         headers: {
