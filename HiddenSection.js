@@ -8,18 +8,22 @@ function HiddenSection({
   index,
   fetchChartData,
   toggleChart,
-
+  setisEmailSent,
   setHiddenSections,
   hiddenSectionsRef,
+  isEmailSent
 }) {
   const [isHidden, setIsHidden] = useState(true);
   const percentage = section.latestData
     ? (section.latestData.weight / section.data.capacity) * 100
     : 0;
 
+
+  console.log(section.data)
+
   // -------------------------------WARNING / EMAIL PART --------------------------------------------------
   useEffect(() => {
-    if (percentage > 80) {
+    if (percentage > 80 && section.data.isEmailSent === false) {
       setIsHidden(false);
       // Trigger API call to send an email
       const emailData = {
@@ -37,20 +41,29 @@ function HiddenSection({
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log('adadd')
+          setisEmailSent(!isEmailSent)
+          console.log(isEmailSent)
           console.log("Successfully sent email:", data);
+          
         })
 
         .catch((error) => {
           console.error("There was an error sending the email", error);
         });
     }
+    else{
+      console.log('adadd')
+      setisEmailSent(true)
+    }
   }, [
     percentage,
     section.data.className,
     section.data.schoolName,
     section.data.email,
+    section.data.isEmailSent
   ]);
-
+  console.log(section.data.isEmailSent)
   return (
     <div key={index} className="hidden-section">
       <div className="section-header">

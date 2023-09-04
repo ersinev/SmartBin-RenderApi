@@ -33,6 +33,8 @@ function App() {
         index === dataIndex ? { ...section, weight: newWeight, isEmailSent } : section
       )
     );
+    console.log(hiddenSections)
+    console.log(isEmailSent)
   };
 
   const handleCapacityChange = (index, newCapacity) => {
@@ -227,6 +229,8 @@ function App() {
               handleWeightChange={handleWeightChange}
               fetchingData={fetchingData}
               setHiddenSections={setHiddenSections}
+              setisEmailSent={setisEmailSent}
+              isEmailSent={isEmailSent}
             />
           ))}
         </div>
