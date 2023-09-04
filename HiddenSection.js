@@ -20,10 +20,10 @@ function HiddenSection({
 
 
   console.log(section.data)
-
+  console.log(isEmailSent)
   // -------------------------------WARNING / EMAIL PART --------------------------------------------------
   useEffect(() => {
-    if (percentage > 80 && section.data.isEmailSent === false) {
+    if (percentage > 80 && isEmailSent === false) {
       setIsHidden(false);
       // Trigger API call to send an email
       const emailData = {
@@ -42,8 +42,8 @@ function HiddenSection({
         .then((response) => response.json())
         .then((data) => {
           console.log('adadd')
-          setisEmailSent(!isEmailSent)
-          console.log(isEmailSent)
+          setisEmailSent(true)
+          
           console.log("Successfully sent email:", data);
           
         })
@@ -63,7 +63,7 @@ function HiddenSection({
     section.data.email,
     section.data.isEmailSent
   ]);
-  console.log(section.data.isEmailSent)
+  console.log(isEmailSent)
   return (
     <div key={index} className="hidden-section">
       <div className="section-header">
