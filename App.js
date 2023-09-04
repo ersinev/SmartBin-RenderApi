@@ -10,7 +10,7 @@ import Compare from "./Compare";
 
 function App() {
   const [feedKey, setFeedKey] = useState("");
-
+  const [isEmailSent, setisEmailSent] = useState(false);
   const [schoolName, setSchoolName] = useState("");
   const [className, setClassName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ function App() {
   const handleWeightChange = (dataIndex, newWeight) => {
     setHiddenSections((prevHiddenSections) =>
       prevHiddenSections.map((section, index) =>
-        index === dataIndex ? { ...section, weight: newWeight } : section
+        index === dataIndex ? { ...section, weight: newWeight, isEmailSent } : section
       )
     );
   };
@@ -53,9 +53,6 @@ function App() {
 
       if (chartData.length > 0) {
         const latestData = chartData[chartData.length - 1];
-        // console.log(latestData)
-        // console.log(index)
-        // console.log(hiddenSections)
 
         setHiddenSections((prevHiddenSections) => {
           return prevHiddenSections.map((s, i) =>
@@ -70,7 +67,7 @@ function App() {
           );
         });
 
-        //setcounter((a)=> a+2)
+        
       }
     } catch (error) {
       console.error("Error fetching chart data:", error);
@@ -116,6 +113,7 @@ function App() {
       className,
       email,
       feedKey,
+      isEmailSent,
 
       capacity,
     };
