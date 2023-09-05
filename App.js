@@ -10,7 +10,7 @@ import Compare from "./Compare";
 
 function App() {
   const [feedKey, setFeedKey] = useState("");
-  const [isEmailSent, setisEmailSent] = useState(false);
+  
   const [schoolName, setSchoolName] = useState("");
   const [className, setClassName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,11 +30,10 @@ function App() {
   const handleWeightChange = (dataIndex, newWeight) => {
     setHiddenSections((prevHiddenSections) =>
       prevHiddenSections.map((section, index) =>
-        index === dataIndex ? { ...section, weight: newWeight, isEmailSent } : section
+        index === dataIndex ? { ...section, weight: newWeight } : section
       )
     );
-    console.log(hiddenSections)
-    console.log(isEmailSent)
+   
   };
 
   const handleCapacityChange = (index, newCapacity) => {
@@ -115,7 +114,7 @@ function App() {
       className,
       email,
       feedKey,
-      isEmailSent,
+     
 
       capacity,
     };
@@ -229,8 +228,7 @@ function App() {
               handleWeightChange={handleWeightChange}
               fetchingData={fetchingData}
               setHiddenSections={setHiddenSections}
-              setisEmailSent={setisEmailSent}
-              isEmailSent={isEmailSent}
+             
             />
           ))}
         </div>
