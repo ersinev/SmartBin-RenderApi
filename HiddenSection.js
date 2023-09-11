@@ -12,49 +12,48 @@ function HiddenSection({
   hiddenSectionsRef,
 }) {
   const [isHidden, setIsHidden] = useState(true);
+  const [emailSent, setEmailSent] = useState({});
   const percentage = section.latestData
     ? (section.latestData.weight / section.data.capacity) * 100
     : 0;
 
-  
-  
   // -------------------------------WARNING / EMAIL PART --------------------------------------------------
   useEffect(() => {
     if (percentage > 80) {
       setIsHidden(false);
-      // Trigger API call to send an email
-      const emailData = {
-        to: section.data.email,
-        subject: "Garbage Fill Warning",
-        text: `The garbage fill percentage for <strong>${section.data.schoolName}<strong/>, ${section.data.className} is over 80%. Please empty the trash.`,
-      };
 
-      fetch("https://smartbin-cf8d.onrender.com/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(emailData),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("adadd");
+      // Check if an email has already been sent for this feedKey
+      if (!emailSent[section.data.feedKey]) {
+        // Trigger API call to send an email
+        const emailData = {
+          to: section.data.email,
+          subject: "Garbage Fill Warning",
+          text: `The garbage fill percentage for ${section.data.schoolName}, ${section.data.className} is over 80%. Please empty the trash.`,
+        };
 
-          console.log("Successfully sent email:", data);
+        fetch("https://smartbin-cf8d.onrender.com/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emailData),
         })
-
-        .catch((error) => {
-          console.error("There was an error sending the email", error);
-        });
-    } else {
-      console.log("adadd");
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Successfully sent email:", data);
+            
+            // Mark the email as sent
+            setEmailSent((prevEmailSent) => ({
+              ...prevEmailSent,
+              [section.data.feedKey]: true,
+            }));
+          })
+          .catch((error) => {
+            console.error("There was an error sending the email", error);
+          });
+      }
     }
-  }, [
-    percentage,
-    section.data.className,
-    section.data.schoolName,
-    section.data.email,
-  ]);
+  }, [percentage, section.data.feedKey, section.data.email, section.data.schoolName, section.data.className, emailSent]);
   
   return (
     <div key={index} className="hidden-section">

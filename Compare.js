@@ -57,6 +57,7 @@ export default function Compare() {
           className: deviceId,
         }));
 
+      
         setAllFetchedChartData(chartData);
       } else {
         console.warn("Failed fetching data");
