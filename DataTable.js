@@ -12,7 +12,6 @@ function DataTable({
   renderCapacityInput,
   deleteSavedData,
   compareButton,
-  
 }) {
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
