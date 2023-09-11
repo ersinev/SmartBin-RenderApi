@@ -27,8 +27,9 @@ function HiddenSection({
         // Trigger API call to send an email
         const emailData = {
           to: section.data.email,
-          subject: "Garbage Fill Warning",
-          text: `The garbage fill percentage for ${section.data.schoolName}, ${section.data.className} is over 80%. Please empty the trash.`,
+          subject:"Garbage Fill Warning",
+          text:`${section.data.schoolName} / ${section.data.className}` 
+         
         };
 
         fetch("https://smartbin-cf8d.onrender.com/send-email", {
