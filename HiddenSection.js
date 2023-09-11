@@ -41,7 +41,7 @@ function HiddenSection({
           .then((response) => response.json())
           .then((data) => {
             console.log("Successfully sent email:", data);
-            
+
             // Mark the email as sent
             setEmailSent((prevEmailSent) => ({
               ...prevEmailSent,
@@ -53,8 +53,15 @@ function HiddenSection({
           });
       }
     }
-  }, [percentage, section.data.feedKey, section.data.email, section.data.schoolName, section.data.className, emailSent]);
-  
+  }, [
+    percentage,
+    section.data.feedKey,
+    section.data.email,
+    section.data.schoolName,
+    section.data.className,
+    emailSent,
+  ]);
+
   return (
     <div key={index} className="hidden-section">
       <div className="section-header">
