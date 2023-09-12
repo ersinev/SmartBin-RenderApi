@@ -12,17 +12,17 @@ import {
 } from "recharts";
 
 const Chart = ({ data, capacity }) => {
-  // Use the original data array as is
+ 
   const chartData = data.map((entry) => ({
     created_at: entry.timestamp,
     value: entry.weight,
   }));
 
-  // Get the required data point value for the reference line
+ 
   const referenceValue =
     data.length > 0 ? data[data.length - 1].weight : 0;
 
-  // Generate ticks for YAxis
+ 
   const yAxisTicks = [
     0,
     capacity / 5,
