@@ -46,7 +46,7 @@ function App() {
 
   const fetchChartData = async (section, index) => {
     try {
-      // Fetch data from the new API
+      
       const response = await fetch(
         `https://smartbin-cf8d.onrender.com/fetch-weights/${section.feedKey}`
       );
