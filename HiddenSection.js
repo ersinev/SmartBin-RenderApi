@@ -43,7 +43,7 @@ function HiddenSection({
           .then((data) => {
             console.log("Successfully sent email:", data);
 
-            // Mark the email as sent
+            
             setEmailSent((prevEmailSent) => ({
               ...prevEmailSent,
               [section.data.feedKey]: true,
