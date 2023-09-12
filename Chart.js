@@ -35,7 +35,7 @@ const Chart = ({ data, capacity }) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
-        data={chartData} // Use the adjusted chartData
+        data={chartData} 
         margin={{
           top: 10,
           right: 10,
