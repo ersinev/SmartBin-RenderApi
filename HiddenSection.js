@@ -22,9 +22,9 @@ function HiddenSection({
     if (percentage > 80) {
       setIsHidden(false);
 
-      // Check if an email has already been sent for this feedKey
+      
       if (!emailSent[section.data.feedKey]) {
-        // Trigger API call to send an email
+        
         const emailData = {
           to: section.data.email,
           subject:"Garbage Fill Warning",

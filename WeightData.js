@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 const WeightData = ({ weight }) => {
-  useEffect(() => {}, [weight]); // Removed adafruitUsername and adafruitIoKey, as they are not required anymore
+  useEffect(() => {}, [weight]); 
 
   return (
     <div className="weight-data">
