@@ -13,13 +13,13 @@ function SimpleBarChart({ chartData, capacity }) {
 
   let reducedData = Array.from(lastDataForDate.values());
 
-  // Sort the data from oldest to newest
+
   reducedData = reducedData.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   const referenceValue =
     reducedData.length > 0 ? reducedData[reducedData.length - 1].uv : 0;
 
-  // Enhanced Y-axis ticks for better granularity
+ 
   const yAxisTicks = Array.from({ length: 6 }).map((_, i) => (capacity / 5) * i);
 
   return (
