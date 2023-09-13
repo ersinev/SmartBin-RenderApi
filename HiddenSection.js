@@ -10,26 +10,26 @@ function HiddenSection({
   toggleChart,
   setHiddenSections,
   hiddenSectionsRef,
+  setEmailSent,
+  emailSent
 }) {
   const [isHidden, setIsHidden] = useState(true);
-  const [emailSent, setEmailSent] = useState({});
+
   const percentage = section.latestData
     ? (section.latestData.weight / section.data.capacity) * 100
     : 0;
 
-  // -------------------------------WARNING / EMAIL PART --------------------------------------------------
+    console.log(emailSent)
   useEffect(() => {
     if (percentage > 80) {
       setIsHidden(false);
+      if (!emailSent.includes(section.data.feedKey)) {
+        setEmailSent((prevEmailSent) => [...prevEmailSent, section.data.feedKey]);
 
-      
-      if (!emailSent[section.data.feedKey]) {
-        
         const emailData = {
           to: section.data.email,
-          subject:"Garbage Fill Warning",
-          text:`${section.data.schoolName} / ${section.data.className}` 
-         
+          subject: "Garbage Fill Warning",
+          text: `${section.data.schoolName} / ${section.data.className}`,
         };
 
         fetch("https://smartbin-cf8d.onrender.com/send-email", {
@@ -42,12 +42,6 @@ function HiddenSection({
           .then((response) => response.json())
           .then((data) => {
             console.log("Successfully sent email:", data);
-
-            
-            setEmailSent((prevEmailSent) => ({
-              ...prevEmailSent,
-              [section.data.feedKey]: true,
-            }));
           })
           .catch((error) => {
             console.error("There was an error sending the email", error);
@@ -60,7 +54,8 @@ function HiddenSection({
     section.data.email,
     section.data.schoolName,
     section.data.className,
-    emailSent,
+    setEmailSent,
+    emailSent
   ]);
 
   return (

@@ -10,7 +10,7 @@ import Compare from "./Compare";
 
 function App() {
   const [feedKey, setFeedKey] = useState("");
-  
+  const [emailSent, setEmailSent] = useState([]);
   const [schoolName, setSchoolName] = useState("");
   const [className, setClassName] = useState("");
   const [email, setEmail] = useState("");
@@ -228,6 +228,8 @@ function App() {
               handleWeightChange={handleWeightChange}
               fetchingData={fetchingData}
               setHiddenSections={setHiddenSections}
+              setEmailSent={setEmailSent}
+              emailSent={emailSent}
              
             />
           ))}
