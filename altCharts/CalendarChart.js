@@ -3,7 +3,6 @@ import { ResponsiveCalendar } from '@nivo/calendar';
 const CalendarChart = ({ chartData }) => {
   let lastDataPerDay = {};
 
-  // Assuming chartData is sorted by date in ascending order
   chartData.forEach((item) => {
     lastDataPerDay[item.date] = item.uv;
   });
