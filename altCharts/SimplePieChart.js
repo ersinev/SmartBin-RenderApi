@@ -10,16 +10,13 @@ function SimplePieChart({ chartData }) {
 
   const dataArray = Array.from(lastDataForDate.values());
 
-  // Calculate the date 30 days ago from today
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-  // Filter to only include the last 30 days' data
   const latest30DaysData = dataArray.filter(
     (item) => new Date(item.date) >= thirtyDaysAgo
   );
 
-  // Convert the last 30 days data for the pie chart
   const pieData = latest30DaysData.map((item) => ({
     id: item.date,
     label: item.date,
