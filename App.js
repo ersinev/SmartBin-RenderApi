@@ -33,7 +33,6 @@ function App() {
         index === dataIndex ? { ...section, weight: newWeight } : section
       )
     );
-   
   };
 
   const handleCapacityChange = (index, newCapacity) => {
@@ -46,7 +45,6 @@ function App() {
 
   const fetchChartData = async (section, index) => {
     try {
-      
       const response = await fetch(
         `https://smartbin-cf8d.onrender.com/fetch-weights/${section.feedKey}`
       );
@@ -67,8 +65,6 @@ function App() {
               : s
           );
         });
-
-        
       }
     } catch (error) {
       console.error("Error fetching chart data:", error);
@@ -114,7 +110,6 @@ function App() {
       className,
       email,
       feedKey,
-     
 
       capacity,
     };
@@ -230,7 +225,6 @@ function App() {
               setHiddenSections={setHiddenSections}
               setEmailSent={setEmailSent}
               emailSent={emailSent}
-             
             />
           ))}
         </div>
