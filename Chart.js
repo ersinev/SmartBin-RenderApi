@@ -12,17 +12,13 @@ import {
 } from "recharts";
 
 const Chart = ({ data, capacity }) => {
- 
   const chartData = data.map((entry) => ({
     created_at: entry.timestamp,
     value: entry.weight,
   }));
 
- 
-  const referenceValue =
-    data.length > 0 ? data[data.length - 1].weight : 0;
+  const referenceValue = data.length > 0 ? data[data.length - 1].weight : 0;
 
- 
   const yAxisTicks = [
     0,
     capacity / 5,
@@ -35,7 +31,7 @@ const Chart = ({ data, capacity }) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
-        data={chartData} 
+        data={chartData}
         margin={{
           top: 10,
           right: 10,
@@ -67,7 +63,11 @@ const Chart = ({ data, capacity }) => {
           stroke="red"
           strokeDasharray="3 3"
           strokeWidth={2}
-          label={{ value: `${Math.floor(referenceValue)}`, fill: 'black', fontSize: 20 }}
+          label={{
+            value: `${Math.floor(referenceValue)}`,
+            fill: "black",
+            fontSize: 20,
+          }}
         />
       </LineChart>
     </ResponsiveContainer>
