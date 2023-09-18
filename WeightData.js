@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 const WeightData = ({ weight }) => {
-  useEffect(() => {}, [weight]); 
+  useEffect(() => {}, [weight]);
 
   return (
     <div className="weight-data">
