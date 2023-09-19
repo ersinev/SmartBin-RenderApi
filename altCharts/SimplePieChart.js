@@ -10,22 +10,25 @@ function SimplePieChart({ chartData }) {
 
   const dataArray = Array.from(lastDataForDate.values());
 
-  const thirtyDaysAgo = new Date();
-  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  const fifteenDaysAgo = new Date();
+  fifteenDaysAgo.setDate(fifteenDaysAgo.getDate() - 10);
 
-  const latest30DaysData = dataArray.filter(
-    (item) => new Date(item.date) >= thirtyDaysAgo
+  const latest15DaysData = dataArray.filter(
+    (item) => new Date(item.date) >= fifteenDaysAgo
   );
 
-  const pieData = latest30DaysData.map((item) => ({
+  const pieData = latest15DaysData.map((item) => ({
     id: item.date,
     label: item.date,
     value: item.uv,
   }));
 
   return (
+    <div>
+      <h3>Last 10 Days</h3>
     <div style={{ height: 300 }}>
       <ResponsivePie
+      
         data={pieData}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
@@ -42,6 +45,7 @@ function SimplePieChart({ chartData }) {
           modifiers: [["darker", 0.2]],
         }}
       />
+    </div>
     </div>
   );
 }
