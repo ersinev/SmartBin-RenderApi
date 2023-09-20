@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Container, Row, Col } from "react-bootstrap";
+import { Modal, Container, Row, Col, Button } from "react-bootstrap";
 import SimpleBarChart from "./altCharts/SimpleBarChart";
 import CalendarChart from "./altCharts/CalendarChart";
 import SimplePieChart from "./altCharts/SimplePieChart";
@@ -38,32 +38,67 @@ function MonthlyChart({ data, showModal, handleClose, capacity }) {
     }
   }, [data]);
 
+  const printContent = () => {
+    const printWindow = window.open("", "_blank");
+
+    if (printWindow) {
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Monthly Chart</title>
+          </head>
+          <body>
+            <div>
+              <h1>Specific Data For Each Row</h1>
+              <div id="modal-content">
+                ${document.getElementById("modal-content").innerHTML}
+              </div>
+            </div>
+          </body>
+        </html>
+      `);
+
+      printWindow.document.close();
+
+      // Trigger the print dialog
+      printWindow.print();
+      printWindow.onafterprint = () => {
+        printWindow.close();
+      };
+    }
+  };
+
   return (
     <Modal show={showModal} onHide={handleClose} centered size="lg">
       <Modal.Header closeButton>
         <Modal.Title>Specific Data For Each Row</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {chartData ? (
-          <Container fluid>
-            <Row>
-              <Col md={12}>
-                <CalendarChart chartData={chartData} />
-              </Col>
-            </Row>
-            <Row>
-              <Col md={12}>
-                <SimplePieChart chartData={chartData} />
-              </Col>
-              <Col md={12}>
-                <SimpleBarChart chartData={chartData} capacity={capacity} />
-              </Col>
-            </Row>
-          </Container>
-        ) : (
-          <p>Loading...</p>
-        )}
+        <div >
+          {chartData ? (
+            <Container fluid>
+              <Row>
+                <Col md={12}>
+                  <CalendarChart chartData={chartData} />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <SimplePieChart chartData={chartData} />
+                </Col>
+                <Col md={12} id="modal-content">
+                  <SimpleBarChart chartData={chartData} capacity={capacity} />
+                </Col>
+              </Row>
+            </Container>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
       </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={printContent}>Print</Button>
+      </Modal.Footer>
     </Modal>
   );
 }

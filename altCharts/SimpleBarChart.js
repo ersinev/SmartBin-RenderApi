@@ -33,6 +33,23 @@ function CustomTooltip({ active, payload, label }) {
   return null;
 }
 
+function CustomBarLabel(props) {
+  const { x, y, value } = props;
+  return (
+    <text
+      x={x}
+      y={y+20} 
+      fill="black" 
+      fontSize={15} 
+      fontWeight="800"
+      textAnchor="middle"
+      transform={`rotate(-45, ${x}, ${y})`}
+    >
+      {value}
+    </text>
+  );
+}
+
 function SimpleBarChart({ chartData, capacity }) {
   const lastDataForDate = new Map();
 
@@ -52,7 +69,7 @@ function SimpleBarChart({ chartData, capacity }) {
   return (
     <div>
       <h3>Last 30 Days</h3>
-      <ResponsiveContainer width="100%" maxWidth={600} height={300}>
+      <ResponsiveContainer width="100%" maxWidth={600} height={400}>
         <BarChart
           data={reducedData}
           margin={{
@@ -88,9 +105,9 @@ function SimpleBarChart({ chartData, capacity }) {
           <Legend />
           <Bar dataKey="uv" fill="#1684b7" name="gr">
             <LabelList
-              dataKey="date"
-              position="top" // Adjust label position
-              content={(props) => props.value}
+              dataKey="uv"
+              position="top"
+              content={<CustomBarLabel />}
             />
           </Bar>
           <ReferenceLine
