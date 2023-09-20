@@ -26,7 +26,7 @@ function SimplePieChart({ chartData }) {
   return (
     <div>
       <h3>Last 10 Days</h3>
-    <div style={{ height: 300 }}>
+    <div style={{ height: 500 }}>
       <ResponsivePie
       
         data={pieData}
