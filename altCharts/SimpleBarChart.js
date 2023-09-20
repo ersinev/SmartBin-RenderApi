@@ -37,7 +37,7 @@ function SimpleBarChart({ chartData, capacity }) {
   const lastDataForDate = new Map();
 
   chartData.forEach((item) => {
-    // Format the date as "mm/dd" before adding it to the map
+    // Format the date as "MM/dd" before adding it to the map
     const formattedDate = format(new Date(item.date), "MM/dd");
     lastDataForDate.set(formattedDate, item);
   });
@@ -52,7 +52,7 @@ function SimpleBarChart({ chartData, capacity }) {
   return (
     <div>
       <h3>Last 30 Days</h3>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" maxWidth={600} height={300}>
         <BarChart
           data={reducedData}
           margin={{
@@ -70,7 +70,10 @@ function SimpleBarChart({ chartData, capacity }) {
           <XAxis
             dataKey="date"
             tickFormatter={(date) => format(new Date(date), "MM/dd")}
-            interval="preserveStart" // or interval="preserveEnd" depending on your preference
+            angle={-45} // Rotate labels by -45 degrees
+            interval={0} // Show all labels without skipping
+            height={40} // Increase the height of the X-axis to fit labels
+            style={{ fontSize: 15, textAnchor: "end" }} // Adjust font size and text alignment
           />
           <YAxis
             domain={[0, capacity]}
@@ -86,7 +89,7 @@ function SimpleBarChart({ chartData, capacity }) {
           <Bar dataKey="uv" fill="#1684b7" name="gr">
             <LabelList
               dataKey="date"
-              position="insideBottom"
+              position="top" // Adjust label position
               content={(props) => props.value}
             />
           </Bar>
