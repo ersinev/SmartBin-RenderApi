@@ -111,11 +111,12 @@ function HiddenSection({
           />
           {!section.showChart && section.chartData.length > 0 && (
             <div className="latest-chart-value">
-              Latest Value: {section.chartData[0].value}
+              Latest Value: {section.latestData.weight}
             </div>
           )}
         </div>
       )}
+      {console.log(section.chartData[0])}
 
       {section.latestData?.weight !== undefined && (
         <div ref={hiddenSectionsRef}>

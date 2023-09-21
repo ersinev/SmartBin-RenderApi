@@ -38,9 +38,9 @@ function CustomBarLabel(props) {
   return (
     <text
       x={x}
-      y={y+20} 
-      fill="black" 
-      fontSize={18} 
+      y={y + 20}
+      fill="black"
+      fontSize={18}
       fontWeight="600"
       textAnchor="middle"
       transform={`rotate(-45, ${x}, ${y})`}
@@ -78,11 +78,24 @@ function SimpleBarChart({ chartData, capacity }) {
             left: 50,
           }}
         >
+          <defs>
+            <pattern
+              id="backgroundStripes"
+              width="8"
+              height="8"
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
+              <rect width="8" height="8" fill="#ccc" />
+              <rect width="4" height="8" fill="#fff" />
+            </pattern>
+          </defs>
           <CartesianGrid
             strokeDasharray="3 3"
             vertical={false}
             horizontalFill={["#f5f5f5", "#fff"]}
             fillOpacity={1}
+            fill="url(#backgroundStripes)"
           />
           <XAxis
             dataKey="date"
