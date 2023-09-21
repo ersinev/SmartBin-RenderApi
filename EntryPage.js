@@ -21,14 +21,14 @@ function EntryPage() {
 
       <Row>
       <h2 style={{textAlign:"center", color:"red"}}>---------------------------------------------- Stap 2 ---------------------------------------------- </h2>
-        <Col>
+        <Col >
         <img
           src={require("./startFetch.jpg")}
           alt="Garbage"
           style={{
             maxWidth: "100%",
             height: "100%",
-           
+            
           }}
         />
         </Col>
