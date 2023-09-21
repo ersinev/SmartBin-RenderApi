@@ -40,8 +40,8 @@ function CustomBarLabel(props) {
       x={x}
       y={y+20} 
       fill="black" 
-      fontSize={15} 
-      fontWeight="800"
+      fontSize={18} 
+      fontWeight="600"
       textAnchor="middle"
       transform={`rotate(-45, ${x}, ${y})`}
     >
