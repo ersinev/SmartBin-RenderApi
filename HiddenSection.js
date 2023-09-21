@@ -19,7 +19,7 @@ function HiddenSection({
     ? (section.latestData.weight / section.data.capacity) * 100
     : 0;
 
-    console.log(emailSent)
+    
   useEffect(() => {
     if (percentage > 80) {
       setIsHidden(false);
@@ -116,7 +116,7 @@ function HiddenSection({
           )}
         </div>
       )}
-      {console.log(section.chartData[0])}
+      
 
       {section.latestData?.weight !== undefined && (
         <div ref={hiddenSectionsRef}>

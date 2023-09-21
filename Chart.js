@@ -2,7 +2,6 @@ import React from "react";
 import {
   LineChart,
   Line,
-  XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
@@ -44,7 +43,7 @@ const Chart = ({ data, capacity }) => {
           horizontalFill={["#f5f5f5", "#fff"]}
           fillOpacity={1}
         />
-        <XAxis dataKey="created_at" />
+        {/* XAxis removed */}
         <YAxis
           ticks={yAxisTicks}
           domain={[0, capacity]}

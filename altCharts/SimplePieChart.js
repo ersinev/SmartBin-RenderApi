@@ -26,7 +26,7 @@ function SimplePieChart({ chartData }) {
   // Prepare the pieData array with adjusted values for small slices
   const pieData = latest15DaysData.map((item) => {
     const value = item.uv < minimumSliceSize ? Math.floor(minimumSliceSize) : Math.floor(item.uv);
-    console.log(value)
+    
     return {
       id: item.date,
       label: item.date,
