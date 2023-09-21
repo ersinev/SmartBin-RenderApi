@@ -132,6 +132,7 @@ function SimpleBarChart({ chartData, capacity }) {
               value: `${Math.floor(referenceValue)}`,
               fill: "black",
               fontSize: 20,
+              fontWeight:"800"
             }}
           />
         </BarChart>

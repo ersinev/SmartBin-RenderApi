@@ -33,7 +33,7 @@ function InputFields({
           />
         </div>
         <div className="input-cell">
-          <label>Feed Key</label>
+          <label>Device ID</label>
           <input
             type="text"
             value={feedKey}
@@ -49,7 +49,7 @@ function InputFields({
           />
         </div>
         <div className="input-cell">
-          <label>Capacity</label>
+          <label>Garbage Capacity</label>
           <input
             type="number"
             value={capacity}

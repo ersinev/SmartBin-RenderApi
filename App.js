@@ -7,6 +7,7 @@ import DataTable from "./DataTable";
 import InputFields from "./InputFields";
 import HiddenSection from "./HiddenSection";
 import Compare from "./Compare";
+import EntryPage from "./EntryPage";
 
 function App() {
   const [feedKey, setFeedKey] = useState("");
@@ -148,87 +149,94 @@ function App() {
   };
 
   return (
-    <Container
-      fluid
-      className="justify-content-center align-items-center"
-      style={{ height: "100vh" }}
-    >
-      <div className="text-center my-4">
-        <img
-          src={require("./garbage3.png")}
-          alt="Garbage"
-          style={{
-            maxWidth: "100%",
-            height: "200px",
-            borderRadius: "40px",
-            transform: "rotate(-10deg)",
-          }}
-        />
-        <img
-          src={require("./logo.png")}
-          alt="Logo"
-          style={{ maxWidth: "100%", height: "auto" }}
-        />
-        <img
-          src={require("./garbage3.png")}
-          alt="Garbage"
-          style={{
-            maxWidth: "100%",
-            height: "200px",
-            borderRadius: "40px",
-            transform: "rotate(10deg)",
-          }}
-        />
-      </div>
+    <Container fluid className="justify-content-center align-items-center">
+      <Container 
+        fluid
+        
+        className="justify-content-center align-items-center"
+      >
+        <EntryPage/>
+      </Container>
 
-      <div className="app">
-        <h1>Smart Bin Project</h1>
-        <InputFields
-          schoolName={schoolName}
-          className={className}
-          email={email}
-          feedKey={feedKey}
-          capacity={capacity}
-          setEmail={setEmail}
-          setSchoolName={setSchoolName}
-          setClassName={setClassName}
-          setFeedKey={setFeedKey}
-          setCapacity={setCapacity}
-          saveData={saveData}
-        />
 
-        <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-
-        <Container fluid>
-          <DataTable
-            savedData={savedData}
-            searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
-            startFetching={startFetching}
-            renderCapacityInput={renderCapacityInput}
-            deleteSavedData={deleteSavedData}
-            compareButton={<Compare savedData={savedData} />}
+      <Container fluid >
+        <div className="text-center my-4">
+          <img
+            src={require("./garbage3.png")}
+            alt="Garbage"
+            style={{
+              maxWidth: "100%",
+              height: "200px",
+              borderRadius: "40px",
+              transform: "rotate(-10deg)",
+            }}
           />
-        </Container>
-
-        <div className="hidden-sections-container">
-          {hiddenSections.map((section, index) => (
-            <HiddenSection
-              hiddenSectionsRef={hiddenSectionsRef}
-              key={index}
-              section={section}
-              index={index}
-              fetchChartData={fetchChartData}
-              toggleChart={toggleChart}
-              handleWeightChange={handleWeightChange}
-              fetchingData={fetchingData}
-              setHiddenSections={setHiddenSections}
-              setEmailSent={setEmailSent}
-              emailSent={emailSent}
-            />
-          ))}
+          <img
+            src={require("./logo.png")}
+            alt="Logo"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+          <img
+            src={require("./garbage3.png")}
+            alt="Garbage"
+            style={{
+              maxWidth: "100%",
+              height: "200px",
+              borderRadius: "40px",
+              transform: "rotate(10deg)",
+            }}
+          />
         </div>
-      </div>
+
+        <div className="app">
+          <h1>Smart Bin Project</h1>
+          <InputFields
+            schoolName={schoolName}
+            className={className}
+            email={email}
+            feedKey={feedKey}
+            capacity={capacity}
+            setEmail={setEmail}
+            setSchoolName={setSchoolName}
+            setClassName={setClassName}
+            setFeedKey={setFeedKey}
+            setCapacity={setCapacity}
+            saveData={saveData}
+          />
+
+          <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+
+          <Container fluid>
+            <DataTable
+              savedData={savedData}
+              searchTerm={searchTerm}
+              onSearchChange={setSearchTerm}
+              startFetching={startFetching}
+              renderCapacityInput={renderCapacityInput}
+              deleteSavedData={deleteSavedData}
+              compareButton={<Compare savedData={savedData} />}
+            />
+          </Container>
+
+          <div className="hidden-sections-container">
+            {hiddenSections.map((section, index) => (
+              <HiddenSection
+                hiddenSectionsRef={hiddenSectionsRef}
+                key={index}
+                section={section}
+                index={index}
+                fetchChartData={fetchChartData}
+                toggleChart={toggleChart}
+                handleWeightChange={handleWeightChange}
+                fetchingData={fetchingData}
+                setHiddenSections={setHiddenSections}
+                setEmailSent={setEmailSent}
+                emailSent={emailSent}
+              />
+            ))}
+          </div>
+        </div>
+      </Container>
     </Container>
   );
 }
