@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MonthlyChart from "./MonthlyChart";
+import MonthlyChart from "./Charts/MonthlyChart";
 import { VscDebugStart } from "react-icons/vsc";
 import { MdDelete } from "react-icons/md";
 import { BsPieChart } from "react-icons/bs";

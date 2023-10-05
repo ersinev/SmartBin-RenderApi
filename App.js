@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
-import SearchBar from "./SearchBar";
-import DataTable from "./DataTable";
-import InputFields from "./InputFields";
-import HiddenSection from "./HiddenSection";
-import Compare from "./Compare";
+import SearchBar from "./components/SearchBar";
+import DataTable from "./components/DataTable";
+import InputFields from "./components/InputFields";
+import HiddenSection from "./components/HiddenSection";
+import Compare from "./components/Compare";
 
 
 function App() {

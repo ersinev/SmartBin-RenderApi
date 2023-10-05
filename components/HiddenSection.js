@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Chart from "./Chart";
+import Chart from "./Charts/Chart";
 import WeightData from "./WeightData";
 import GarbageAnimation from "./GarbageAnimation";
 
