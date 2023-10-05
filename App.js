@@ -7,7 +7,7 @@ import DataTable from "./DataTable";
 import InputFields from "./InputFields";
 import HiddenSection from "./HiddenSection";
 import Compare from "./Compare";
-import EntryPage from "./EntryPage";
+
 
 function App() {
   const [feedKey, setFeedKey] = useState("");
@@ -150,19 +150,19 @@ function App() {
 
   return (
     <Container fluid className="justify-content-center align-items-center">
-      <Container 
+      {/* <Container 
         fluid
         
         className="justify-content-center align-items-center"
       >
         <EntryPage/>
-      </Container>
+      </Container> */}
 
 
       <Container fluid >
         <div className="text-center my-4">
           <img
-            src={require("./garbage3.png")}
+            src={require("./assets/homepage/garbage3.png")}
             alt="Garbage"
             style={{
               maxWidth: "100%",
@@ -172,12 +172,12 @@ function App() {
             }}
           />
           <img
-            src={require("./logo.png")}
+            src={require("./assets/homepage/logo.png")}
             alt="Logo"
             style={{ maxWidth: "100%", height: "auto" }}
           />
           <img
-            src={require("./garbage3.png")}
+            src={require("./assets/homepage/garbage3.png")}
             alt="Garbage"
             style={{
               maxWidth: "100%",
