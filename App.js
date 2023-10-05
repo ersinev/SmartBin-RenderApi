@@ -8,7 +8,6 @@ import InputFields from "./components/InputFields";
 import HiddenSection from "./components/HiddenSection";
 import Compare from "./components/Compare";
 
-
 function App() {
   const [feedKey, setFeedKey] = useState("");
   const [emailSent, setEmailSent] = useState([]);
@@ -158,8 +157,7 @@ function App() {
         <EntryPage/>
       </Container> */}
 
-
-      <Container fluid >
+      <Container fluid>
         <div className="text-center my-4">
           <img
             src={require("./assets/homepage/garbage3.png")}
