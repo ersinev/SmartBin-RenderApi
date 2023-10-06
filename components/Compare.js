@@ -16,7 +16,7 @@ import { BsBarChart } from "react-icons/bs";
 const CustomBarLabel = (props) => {
   const { x, y, width, value } = props;
   const xOffset = x + width / 2;
-  const yOffset = y - 10;
+  const yOffset = y + 5;
   return (
     <text
       style={{ fontWeight: "bolder" }}
