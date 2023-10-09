@@ -10,22 +10,31 @@ import {
   ReferenceLine,
 } from "recharts";
 
-const Chart = ({ data, capacity }) => {
+const Chart = ({ data }) => {
   const chartData = data.map((entry) => ({
     created_at: entry.timestamp,
     value: entry.weight,
   }));
 
-  const referenceValue = data.length > 0 ? data[data.length - 1].weight : 0;
+  const latestValue = chartData[chartData.length - 1].value;
+  
 
-  const yAxisTicks = [
-    0,
-    capacity / 5,
-    (2 * capacity) / 5,
-    (3 * capacity) / 5,
-    (4 * capacity) / 5,
-    capacity,
-  ];
+  const minWeight = Math.min(...chartData.map((entry) => entry.value));
+  const maxWeight = Math.max(...chartData.map((entry) => entry.value));
+
+  // Calculate the range and interval for dividing the Y-axis scale
+  const range = maxWeight - minWeight;
+  const interval = range / 5;
+
+  // Calculate the tick values for the Y-axis
+  const yAxisTicks = [];
+  for (let i = 0; i <= 5; i++) {
+    yAxisTicks.push(Math.floor(minWeight + i * interval));
+  }
+  yAxisTicks[5] = maxWeight; // Set the last tick to the maxWeight
+
+  // Sort the yAxisTicks array in ascending order
+  yAxisTicks.sort((a, b) => a - b);
 
   return (
     <ResponsiveContainer width="100%" height={300}>
@@ -43,10 +52,9 @@ const Chart = ({ data, capacity }) => {
           horizontalFill={["#f5f5f5", "#fff"]}
           fillOpacity={1}
         />
-        {/* XAxis removed */}
         <YAxis
           ticks={yAxisTicks}
-          domain={[0, capacity]}
+          domain={[minWeight, maxWeight]}
           tick={{ fontSize: 12 }}
         />
         <Tooltip />
@@ -58,14 +66,17 @@ const Chart = ({ data, capacity }) => {
           activeDot={{ r: 8 }}
         />
         <ReferenceLine
-          y={referenceValue}
-          stroke="red"
+          y={latestValue}
+          stroke="green"
           strokeDasharray="3 3"
-          strokeWidth={2}
+          strokeWidth={4}
           label={{
-            value: `${Math.floor(referenceValue)}`,
+            value: `${Math.floor(latestValue)}`,
             fill: "black",
             fontSize: 20,
+            fontWeight: 800,
+            position: "center",
+            offset: 10,
           }}
         />
       </LineChart>
