@@ -22,11 +22,11 @@ const Chart = ({ data }) => {
   const minWeight = Math.min(...chartData.map((entry) => entry.value));
   const maxWeight = Math.max(...chartData.map((entry) => entry.value));
 
-  // Calculate the range and interval for dividing the Y-axis scale
+ 
   const range = maxWeight - minWeight;
   const interval = range / 5;
 
-  // Calculate the tick values for the Y-axis
+  
   const yAxisTicks = [];
   for (let i = 0; i <= 5; i++) {
     yAxisTicks.push(Math.floor(minWeight + i * interval));
