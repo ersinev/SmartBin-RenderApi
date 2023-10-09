@@ -31,9 +31,7 @@ const Chart = ({ data }) => {
   for (let i = 0; i <= 5; i++) {
     yAxisTicks.push(Math.floor(minWeight + i * interval));
   }
-  yAxisTicks[5] = maxWeight; // Set the last tick to the maxWeight
-
-  // Sort the yAxisTicks array in ascending order
+  yAxisTicks[5] = maxWeight;
   yAxisTicks.sort((a, b) => a - b);
 
   return (
