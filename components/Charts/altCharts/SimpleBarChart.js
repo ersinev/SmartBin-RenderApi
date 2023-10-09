@@ -38,7 +38,7 @@ function CustomBarLabel(props) {
   return (
     <text
       x={x}
-      y={y + 15}
+      y={y + 10}
       fill="black"
       fontSize={15}
       fontWeight="600"
@@ -109,7 +109,7 @@ function SimpleBarChart({ chartData, capacity }) {
           />
           <YAxis
             domain={[0, capacity]}
-            tick={{ fontSize: 12, fill: "black" }}
+            tick={{ fontSize: 15, fontWeight:"bolder", fill: "black" }}
             tickLine={{ stroke: "#666", strokeWidth: 0.5 }}
             axisLine={{ stroke: "#666", strokeWidth: 1 }}
             width={50}
@@ -127,8 +127,8 @@ function SimpleBarChart({ chartData, capacity }) {
           </Bar>
           <ReferenceLine
             y={referenceValue}
-            stroke="blue"
-            strokeDasharray="3 3"
+            stroke="green"
+            strokeDasharray="8 8"
             strokeWidth={2}
             label={{
               value: `${Math.floor(referenceValue)}`,

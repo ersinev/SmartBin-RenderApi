@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  LineChart,
-  Line,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-} from "recharts";
+import { LineChart, Line, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, Label } from "recharts";
+import { format } from "date-fns"; // Import the format function from date-fns
 
 const Chart = ({ data }) => {
   const chartData = data.map((entry) => ({
@@ -18,15 +10,12 @@ const Chart = ({ data }) => {
 
   const latestValue = chartData[chartData.length - 1].value;
   
-
   const minWeight = Math.min(...chartData.map((entry) => entry.value));
   const maxWeight = Math.max(...chartData.map((entry) => entry.value));
 
- 
   const range = maxWeight - minWeight;
   const interval = range / 5;
 
-  
   const yAxisTicks = [];
   for (let i = 0; i <= 5; i++) {
     yAxisTicks.push(Math.floor(minWeight + i * interval));
@@ -41,7 +30,7 @@ const Chart = ({ data }) => {
         margin={{
           top: 10,
           right: 10,
-          left: -25,
+          left: -10,
         }}
       >
         <CartesianGrid
@@ -61,8 +50,11 @@ const Chart = ({ data }) => {
           type="monotone"
           dataKey="value"
           stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
+          activeDot={{ r: 2 }}
+        >
+          {/* Customize the tooltip content to display the date */}
+          <Label content={({ payload }) => payload[0] ? format(new Date(payload[0].payload.created_at), 'MM/dd') : ''} position="top" />
+        </Line>
         <ReferenceLine
           y={latestValue}
           stroke="green"
