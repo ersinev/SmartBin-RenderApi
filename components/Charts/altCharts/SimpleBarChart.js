@@ -38,9 +38,9 @@ function CustomBarLabel(props) {
   return (
     <text
       x={x}
-      y={y + 20}
+      y={y + 15}
       fill="black"
-      fontSize={18}
+      fontSize={15}
       fontWeight="600"
       textAnchor="middle"
       transform={`rotate(-45, ${x}, ${y})`}
@@ -75,7 +75,7 @@ function SimpleBarChart({ chartData, capacity }) {
           margin={{
             top: 10,
             right: 10,
-            left: 50,
+            left: -10,
           }}
         >
           <defs>
@@ -100,10 +100,12 @@ function SimpleBarChart({ chartData, capacity }) {
           <XAxis
             dataKey="date"
             tickFormatter={(date) => format(new Date(date), "MM/dd")}
-            angle={-45} // Rotate labels by -45 degrees
+            angle={-60} // Rotate labels by -45 degrees
             interval={0} // Show all labels without skipping
             height={40} // Increase the height of the X-axis to fit labels
             style={{ fontSize: 15, textAnchor: "end" }} // Adjust font size and text alignment
+            width={120} // Increase the width to add more space between labels
+            
           />
           <YAxis
             domain={[0, capacity]}
@@ -132,7 +134,7 @@ function SimpleBarChart({ chartData, capacity }) {
               value: `${Math.floor(referenceValue)}`,
               fill: "black",
               fontSize: 20,
-              fontWeight:"800"
+              fontWeight: "800",
             }}
           />
         </BarChart>
