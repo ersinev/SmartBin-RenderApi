@@ -113,8 +113,9 @@ function App() {
 
       capacity,
     };
+    console.log(newData)
     const updatedSavedData = [...savedData, newData];
-
+    console.log(updatedSavedData)  
     setSavedData(updatedSavedData);
     setSchoolName("");
     setClassName("");
