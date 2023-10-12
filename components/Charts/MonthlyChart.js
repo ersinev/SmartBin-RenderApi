@@ -83,11 +83,11 @@ function MonthlyChart({ data, showModal, handleClose, capacity }) {
                 </Col>
               </Row>
               <Row>
-                <Col md={12}>
-                  <SimplePieChart chartData={chartData} />
-                </Col>
                 <Col md={12} className="barChart" >
                   <SimpleBarChart chartData={chartData} capacity={capacity} />
+                </Col>
+                <Col md={12}>
+                  <SimplePieChart chartData={chartData} />
                 </Col>
               </Row>
             </Container>

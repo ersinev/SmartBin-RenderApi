@@ -38,12 +38,13 @@ function CustomBarLabel(props) {
   return (
     <text
       x={x}
-      y={y + 10}
+      y={y}
       fill="black"
       fontSize={15}
+      
       fontWeight="600"
       textAnchor="middle"
-      transform={`rotate(-45, ${x}, ${y})`}
+      transform={`rotate(-45, ${x-5}, ${y-20})`}
     >
       {value}
     </text>
@@ -75,7 +76,7 @@ function SimpleBarChart({ chartData, capacity }) {
           margin={{
             top: 10,
             right: 10,
-            left: -10,
+            left: -5,
           }}
         >
           <defs>

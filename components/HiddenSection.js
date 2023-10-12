@@ -14,7 +14,7 @@ function HiddenSection({
   emailSent
 }) {
   const [isHidden, setIsHidden] = useState(true);
-
+  console.log(section)
   const percentage = section.latestData
     ? (section.latestData.weight / section.data.capacity) * 100
     : 0;
@@ -62,9 +62,9 @@ function HiddenSection({
     <div key={index} className="hidden-section">
       <div className="section-header">
         <div className="section-header-school">
-          <span>{section.data.schoolName}</span>
+          <span style={{fontWeight:"bolder"}}>{section.data.schoolName}</span>
         </div>
-        <div className="section-header-class">{section.data.className}</div>
+        <div className="section-header-class" style={{fontWeight:"bolder"}}>{section.data.className}</div>
         <div className="section-header-buttons">
           <button
             className="chart-button"
