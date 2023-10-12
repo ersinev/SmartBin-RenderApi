@@ -36,18 +36,17 @@ function CustomTooltip({ active, payload, label }) {
 function CustomBarLabel(props) {
   const { x, y, value } = props;
   return (
-    <text
-      x={x}
-      y={y}
-      fill="black"
-      fontSize={15}
-      
-      fontWeight="600"
-      textAnchor="middle"
-      transform={`rotate(-45, ${x-5}, ${y-20})`}
-    >
-      {value}
-    </text>
+    <text 
+    x={x}
+    y={y}
+    fill="black"
+    fontSize={15}
+    style={{ backgroundColor: "green", fontWeight: "600" }}
+    textAnchor="middle"
+    transform={`rotate(-45, ${x-5}, ${y-20})`}
+  >
+    {value}
+  </text>
   );
 }
 
@@ -74,7 +73,7 @@ function SimpleBarChart({ chartData, capacity }) {
         <BarChart
           data={reducedData}
           margin={{
-            top: 10,
+            top: 30,
             right: 10,
             left: -5,
           }}
@@ -114,6 +113,7 @@ function SimpleBarChart({ chartData, capacity }) {
             tickLine={{ stroke: "#666", strokeWidth: 0.5 }}
             axisLine={{ stroke: "#666", strokeWidth: 1 }}
             width={50}
+            
             interval="preserveStartEnd"
             tickCount={5}
           />
