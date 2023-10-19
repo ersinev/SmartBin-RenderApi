@@ -74,7 +74,7 @@ function MonthlyChart({ data, showModal, handleClose, capacity }) {
         <Modal.Title>Specific Data For Each Row</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div >
+        <div>
           {chartData ? (
             <Container fluid id="modal-content">
               <Row>
@@ -83,7 +83,7 @@ function MonthlyChart({ data, showModal, handleClose, capacity }) {
                 </Col>
               </Row>
               <Row>
-                <Col md={12} className="barChart" >
+                <Col md={12} className="barChart">
                   <SimpleBarChart chartData={chartData} capacity={capacity} />
                 </Col>
                 <Col md={12}>
