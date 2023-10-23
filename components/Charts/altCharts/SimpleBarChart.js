@@ -54,7 +54,7 @@ function SimpleBarChart({ chartData, capacity }) {
   const lastDataForDate = new Map();
 
   chartData.forEach((item) => {
-    // Format the date as "MM/dd" before adding it to the map
+    
     const formattedDate = format(new Date(item.date), "MM/dd");
     lastDataForDate.set(formattedDate, item);
   });
