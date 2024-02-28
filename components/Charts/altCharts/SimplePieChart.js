@@ -1,38 +1,33 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
+import { format, subDays } from "date-fns";
 
 function SimplePieChart({ chartData }) {
+
+  
+  const tenDaysAgo = subDays(new Date(), 10);
+
+  // Filter data for the last 10 days
+  const filteredData = chartData.filter(item => new Date(item.date) >= tenDaysAgo);
+
   const lastDataForDate = new Map();
 
-  chartData.forEach((item) => {
-    lastDataForDate.set(item.date, item);
+  filteredData.forEach((item) => {
+    const formattedDate = format(new Date(item.date), "MM/dd");
+    lastDataForDate.set(formattedDate, item);
   });
 
-  const dataArray = Array.from(lastDataForDate.values());
+  let reducedData = Array.from(lastDataForDate.values());
 
-  const fifteenDaysAgo = new Date();
-  fifteenDaysAgo.setDate(fifteenDaysAgo.getDate() - 10);
+  reducedData = reducedData.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-  const latest15DaysData = dataArray.filter(
-    (item) => new Date(item.date) >= fifteenDaysAgo
-  );
+  // const totalValue = reducedData.reduce((sum, item) => sum + item.uv, 0);
 
-  // Calculate the total value of the data
-  const totalValue = latest15DaysData.reduce((sum, item) => sum + item.uv, 0);
-
-  // Define a minimum size for the smallest pie slice
-  const minimumSliceSize = totalValue * 0.05; // You can adjust this value
-
-  // Prepare the pieData array with adjusted values for small slices
-  const pieData = latest15DaysData.map((item) => {
-    const value = item.uv < minimumSliceSize ? Math.floor(minimumSliceSize) : Math.floor(item.uv);
-    
-    return {
-      id: item.date,
-      label: item.date,
-      value: value,
-    };
-  });
+  const pieData = reducedData.map((item) => ({
+    id: format(new Date(item.date), "MM/dd"),
+    label: format(new Date(item.date), "MM/dd"),
+    value: item.uv,
+  }));
 
   const pieTheme = {
     labels: {
@@ -52,10 +47,10 @@ function SimplePieChart({ chartData }) {
           margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
           innerRadius={0.5}
           padAngle={0.7}
-          cornerRadius={3}
+          cornerRadius={5}
           enableRadialLabels={false}
           enableSliceLabels={true}
-          sliceLabel="value"
+          sliceLabel={({ label }) => label}
           isInteractive={true}
           animate={false}
           borderWidth={1}
@@ -63,7 +58,7 @@ function SimplePieChart({ chartData }) {
             from: "color",
             modifiers: [["darker", 0.2]],
           }}
-          theme={pieTheme} // Apply the custom theme to adjust font size and weight
+          theme={pieTheme}
         />
       </div>
     </div>

@@ -27,6 +27,8 @@ function App() {
     }
   }, []);
 
+  
+
   const handleWeightChange = (dataIndex, newWeight) => {
     setHiddenSections((prevHiddenSections) =>
       prevHiddenSections.map((section, index) =>
