@@ -109,11 +109,7 @@ function HiddenSection({
             capacity={section.data.capacity}
             style={{ width: "100%", height: "100%" }}
           />
-          {!section.showChart && section.chartData.length > 0 && (
-            <div className="latest-chart-value">
-              Latest Value: {section.latestData.weight}
-            </div>
-          )}
+        
         </div>
       )}
       
