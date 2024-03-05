@@ -3,6 +3,7 @@ import { Modal, Container, Row, Col, Button } from "react-bootstrap";
 import SimpleBarChart from "./altCharts/SimpleBarChart";
 import CalendarChart from "./altCharts/CalendarChart";
 import SimplePieChart from "./altCharts/SimplePieChart";
+import DailyChangeChart from "./altCharts/DailyChangeChart";
 
 function MonthlyChart({ data, showModal, handleClose, capacity }) {
   const [chartData, setChartData] = useState(null);
@@ -14,7 +15,7 @@ function MonthlyChart({ data, showModal, handleClose, capacity }) {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            `https://smartbin-cf8d.onrender.com/fetch-weights/${data.feedKey}`
+            `http://localhost:3005/fetch-weights/${data.feedKey}`
           );
           if (response.ok) {
             const responseData = await response.json();
@@ -83,6 +84,9 @@ function MonthlyChart({ data, showModal, handleClose, capacity }) {
                 </Col>
               </Row>
               <Row>
+                <Col md={12} className="barChart">
+                  <DailyChangeChart chartData={chartData} capacity={capacity} />
+                </Col>
                 <Col md={12} className="barChart">
                   <SimpleBarChart chartData={chartData} capacity={capacity} />
                 </Col>
