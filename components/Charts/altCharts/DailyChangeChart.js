@@ -27,6 +27,7 @@ function CustomTooltip({ active, payload, label }) {
       </div>
     );
   }
+  
 
   return null;
 }
@@ -157,5 +158,6 @@ function DailyChangeChart({ chartData, capacity }) {
     </div>
   );
 }
+//asdasd
 
 export default DailyChangeChart;
