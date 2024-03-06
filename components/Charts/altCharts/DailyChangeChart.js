@@ -27,7 +27,6 @@ function CustomTooltip({ active, payload, label }) {
       </div>
     );
   }
-  
 
   return null;
 }
@@ -69,9 +68,7 @@ function DailyChangeChart({ chartData, capacity }) {
     (a, b) => new Date(a.date) - new Date(b.date)
   );
 
-  useEffect(() => {
-    console.log("Reduced Data:", reducedData);
-  }, [reducedData]);
+ 
 
   // Calculate percentage change for each day compared to the previous day
   for (let i = 1; i < reducedData.length; i++) {
@@ -83,6 +80,7 @@ function DailyChangeChart({ chartData, capacity }) {
 
   // Calculate the domain for Y-axis based on the minimum and maximum percentage change values
   let yDomain;
+  let stepSize; // Define stepSize variable
   const percentageChangeData = reducedData.map(item => parseFloat(item.value)).filter(value => !isNaN(value)); // Parse and filter percentage change values to float
   const minPercentageChange = Math.min(...percentageChangeData); // Find minimum percentage change value
   const maxPercentageChange = Math.max(...percentageChangeData); // Find maximum percentage change value
@@ -93,17 +91,17 @@ function DailyChangeChart({ chartData, capacity }) {
     const percentageChangeRange = maxPercentageChange - minPercentageChange;
 
     // Calculate the step size for dividing the range into four segments
-    const stepSize = percentageChangeRange / 4;
+    stepSize = percentageChangeRange / 4;
 
     // Calculate the domain for Y-axis based on the segments
-    yDomain = [minPercentageChange, minPercentageChange + stepSize, minPercentageChange + 2 * stepSize, minPercentageChange + 3 * stepSize, maxPercentageChange];
+    yDomain = [minPercentageChange, minPercentageChange + stepSize, minPercentageChange + 2 * stepSize, maxPercentageChange];
   } else {
     // Fallback to default domain values if no valid percentage change values are found
     yDomain = [0, 25, 50, 75, 100];
   }
-
+  //
   // Exclude the first data point if the selected range is "1 day"
-  const chartDataToShow = selectedRange === "1 day" ? reducedData.slice(1) : reducedData;
+  const chartDataToShow = selectedRange === "1 day" ? reducedData.slice(0,2) : reducedData;
 
   return (
     <div>
@@ -135,12 +133,12 @@ function DailyChangeChart({ chartData, capacity }) {
             style={{ fontSize: 12, textAnchor: "end" }}
           />
           <YAxis
-            domain={yDomain}
+            domain={[yDomain[0], yDomain[3]]} // Set the Y-axis domain to minPercentageChange and the value at index 3 of yDomain
             tick={{ fontSize: 12, fontWeight: "bolder", fill: "black" }}
             tickLine={{ stroke: "#666", strokeWidth: 0.5 }}
             axisLine={{ stroke: "#666", strokeWidth: 1 }}
             width={50}
-            tickCount={5}
+            tickCount={5} // Always set the tick count to 5
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend />
@@ -158,6 +156,5 @@ function DailyChangeChart({ chartData, capacity }) {
     </div>
   );
 }
-//asdasd
 
 export default DailyChangeChart;
