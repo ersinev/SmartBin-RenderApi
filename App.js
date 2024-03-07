@@ -27,7 +27,8 @@ function App() {
     }
   }, []);
 
-  
+  console.log("906C2140")
+  console.log("0DFE7EE8")
 
   const handleWeightChange = (dataIndex, newWeight) => {
     setHiddenSections((prevHiddenSections) =>
