@@ -40,7 +40,7 @@ export default function Compare() {
 
     try {
       const response = await fetch(
-        "http://localhost:3005/fetch-all-weights"
+        "https://smartbin-cf8d.onrender.com/fetch-all-weights"
       );
 
       if (response.ok) {
