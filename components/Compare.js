@@ -66,7 +66,7 @@ export default function Compare() {
       console.warn("Error fetching or processing data:", error);
     }
   };
-
+  //
   return (
     <>
       <Button className="compareBtn" onClick={handleOpenChartModal}>
