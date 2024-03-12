@@ -15,7 +15,7 @@ function MonthlyChart({ data, showModal, handleClose, capacity }) {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            `https://smartbin-cf8d.onrender.com/fetch-weights/${data.feedKey}`
+            `http://localhost:3005/fetch-weights/${data.feedKey}`
           );
           if (response.ok) {
             const responseData = await response.json();

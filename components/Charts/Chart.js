@@ -16,7 +16,7 @@ const Chart = ({ data }) => {
     aggregatedData[date] = entry.weight;
   });
 
-  // Create an array of data points for the chart
+  // Create an array of data points for the chart//
   const chartData = Object.keys(aggregatedData).map(date => ({
     date,
     value: aggregatedData[date],
