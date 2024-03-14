@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { format, subDays } from "date-fns"; // Import the format and subDays functions from date-fns
 
 const Chart = ({ data }) => {
-  // Filter data for the last 30 days
+  // Filter data for the last 30 days.
   const thirtyDaysAgo = subDays(new Date(), 30);
   const filteredData = data.filter(entry => new Date(entry.timestamp) >= thirtyDaysAgo);
 
