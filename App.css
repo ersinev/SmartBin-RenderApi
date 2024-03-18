@@ -346,3 +346,10 @@ button:hover {
     font-size: 0.8rem;
   }
 }
+
+.chart-container{
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
