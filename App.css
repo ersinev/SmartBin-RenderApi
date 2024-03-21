@@ -19,6 +19,7 @@
   margin: 0 auto;
   border: 2px solid #555;
   border-radius: 0 0 50px 50px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .garbage {
@@ -66,6 +67,7 @@
 .capsule {
   border-radius: 50%;
   border: 1px solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .input-table {
@@ -101,91 +103,8 @@
   border-radius: 4px;
 }
 
-.input-buttons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.input-buttons button {
-  padding: 8px 16px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.input-buttons button:hover {
-  background-color: #2980b9;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 2px solid #555;
-  margin-top: 20px;
-  position: relative;
-  table-layout: fixed;
-  overflow-x: auto;
-}
-
-.scrollable-table {
-  width: 100%;
-  display: block;
-  overflow-x: auto;
-}
-
-.data-table thead {
-  display: table;
-  width: calc(100% - 17px);
-  table-layout: fixed;
-}
-
-.data-table tbody {
-  display: block;
-  max-height: 300px;
-  overflow-y: scroll;
-}
-
-.data-table tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.data-table th,
-.data-table td {
-  width: calc(100% / 7);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-}
-
-.data-table th {
-  background-color: #42a790;
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  border: 1px solid #555;
-  padding: 8px;
-}
-
-.data-table td {
-  border: 1px solid #555;
-  padding: 8px;
-  background-color: #eee;
-}
-
-.data-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
 button {
-  background-color: #269dc1;
+  background-color: #3EA794;
   padding: 8px 16px;
   color: white;
   border: none;
@@ -193,30 +112,28 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   margin-left: 3px;
+
 }
 
 button:hover {
-  background-color: #2980b9;
+  background-color: #43bba5;
 }
 
 .close-button {
   background-color: #e74c3c;
+
 }
 
 .hidden-sections-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
 .hidden-section {
   margin-left: 10px;
-}
-
-.table-container {
-  max-height: 500px;
-  overflow-y: auto;
+  
 }
 
 .search-bar {
@@ -259,11 +176,7 @@ button:hover {
   display: block;
 }
 
-.table-responsive,
-.scrollable-table {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
+
 .hidden {
   display: none;
 }
@@ -272,20 +185,13 @@ button:hover {
   position: relative;
 }
 
-
-.compare-button-container {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-}
-
 .compareBtn {
   background-color: #f7af07;
+  border: 2px black solid;
 }
 
 .compareBtn:hover {
-  background-color: #71c829;
+  background-color: #f0c664;
 }
 
 .nivo_calendar {
@@ -326,6 +232,7 @@ button:hover {
     margin: 1.5px;
   }
 }
+
 @media (max-width: 400px) {
   button {
     padding: 4px 8px;
@@ -334,22 +241,40 @@ button:hover {
   }
 }
 
-@media (max-width: 768px) {
-  .data-table th,
-  .data-table td {
-    font-size: 0.9rem;
-  }
-}
 
-@media (max-width: 576px) {
-  .data-table th,
-  .data-table td {
-    font-size: 0.8rem;
-  }
-}
-
-.chart-container{
+.chart-container {
   align-items: center;
   justify-content: center;
   padding: 5px;
+}
+
+.actions {
+  text-align: center !important;
+ 
+}
+
+.tableBtns{
+  font-size: 25px !important;
+  background-color: #9ca0a6 !important;
+  margin: 1px !important;
+}
+
+.tableBtns:hover{
+  background-color: #6cc2b3 !important;
+
+}
+
+
+.data-table{
+  margin-top: 40px;
+  border: 1px solid rgb(0, 0, 0);
+  
+}
+
+.sticky-header{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: rgb(62,167,148);
+
 }

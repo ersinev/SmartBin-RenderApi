@@ -156,14 +156,7 @@ function App() {
 
   return (
     <Container fluid className="justify-content-center align-items-center">
-      {/* <Container 
-        fluid
-        
-        className="justify-content-center align-items-center"
-      >
-        <EntryPage/>
-      </Container> */}
-
+     
       <Container fluid>
         <div className="text-center my-4">
           <img

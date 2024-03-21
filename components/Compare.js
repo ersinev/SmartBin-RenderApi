@@ -19,10 +19,10 @@ const CustomBarLabel = (props) => {
   const yOffset = y + 9;
   return (
     <text
-      style={{ fontWeight: "bolder" }}
+      style={{ fontWeight: "800" }}
       x={xOffset}
       y={yOffset}
-      fill="red"
+      fill="black"
       textAnchor="middle"
       dy={-3}
     >
@@ -99,7 +99,7 @@ export default function Compare() {
                   <Cell
                     key={`cell-${index}`}
                     fill={`hsla(${
-                      index * (360 / allFetchedChartData.length)
+                      index * (400 / allFetchedChartData.length)
                     }, 70%, 50%, 1)`}
                   />
                 ))}

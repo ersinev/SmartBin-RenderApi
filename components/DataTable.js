@@ -1,9 +1,45 @@
-import React, { useState } from "react";
-import MonthlyChart from "./Charts/MonthlyChart";
-import { VscDebugStart } from "react-icons/vsc";
-import { MdDelete } from "react-icons/md";
-import { BsPieChart } from "react-icons/bs";
-import { Button } from "react-bootstrap";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import { FaPlay, FaChartPie } from "react-icons/fa";
+import { MdDelete } from 'react-icons/md';
+import MonthlyChart from './Charts/MonthlyChart';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: 'rgb(62,167,148)',
+    color: theme.palette.common.white,
+    fontSize: 20,
+    fontWeight: '800',
+    
+    
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 16,
+    
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+const CenteredTableCell = styled(TableCell)({
+  textAlign: 'center',
+  verticalAlign: 'middle', // Bu satır butonları dikey olarak hizalar
+});
 
 function DataTable({
   savedData,
@@ -13,28 +49,26 @@ function DataTable({
   deleteSavedData,
   compareButton,
 }) {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = React.useState(false);
   const handleClose = () => setShowModal(false);
-  const [selectedData, setSelectedData] = useState(null);
+  const [selectedData, setSelectedData] = React.useState(null);
 
   return (
     <div className="data-table">
-      <div className="table-responsive">
-        <table className="table scrollable-table">
-          <thead className="sticky-header">
-            <tr>
-              <th>School Name</th>
-              <th>Class Name</th>
-              <th>Feed Key</th>
-              <th>Email</th>
-              <th>Capacity</th>
-              <th className="actions-header">
-                Actions
-                <div className="compare-button-container">{compareButton}</div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+      <TableContainer component={Paper} style={{ maxHeight: '400px', overflowX:'auto' }} className="table-container">
+        <Table aria-label="customized table">
+          <TableHead className="sticky-header">
+            <TableRow>
+              <StyledTableCell>School Name</StyledTableCell>
+              <StyledTableCell>Class Name</StyledTableCell>
+              <StyledTableCell>Feed Key</StyledTableCell>
+              <StyledTableCell>Email</StyledTableCell>
+              <StyledTableCell>Capacity</StyledTableCell>
+              <StyledTableCell className="actions">Actions</StyledTableCell>
+              <StyledTableCell>{compareButton}</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {savedData
               .filter(
                 (data) =>
@@ -46,42 +80,32 @@ function DataTable({
                     .includes(searchTerm.toLowerCase())
               )
               .map((data, index) => (
-                <tr key={index}>
-                  <td>{data.schoolName}</td>
-                  <td>{data.className}</td>
-                  <td>{data.feedKey}</td>
-                  <td>{data.email}</td>
-                  <td>{renderCapacityInput(data, index)}</td>
-                  <td className="button-container">
-                    <Button
-                      className="table-button"
-                      onClick={() => startFetching(data)}
-                    >
-                      <VscDebugStart />
+                <StyledTableRow key={index}>
+                  <StyledTableCell>{data.schoolName}</StyledTableCell>
+                  <StyledTableCell>{data.className}</StyledTableCell>
+                  <StyledTableCell>{data.feedKey}</StyledTableCell>
+                  <StyledTableCell>{data.email}</StyledTableCell>
+                  <StyledTableCell>{renderCapacityInput(data, index)}</StyledTableCell>
+                  <CenteredTableCell className="actionsCell">
+                    <Button className="btnStart tableBtns" onClick={() => startFetching(data)}>
+                      <FaPlay fill='#54c8e8' />
                     </Button>
-                    <Button
-                      className="table-button"
-                      style={{ backgroundColor: "#f2d516" }}
-                      onClick={() => {
-                        setSelectedData(data);
-                        setShowModal(true);
-                      }}
-                    >
-                      <BsPieChart />
+                    <Button className="btnData tableBtns" onClick={() => {
+                      setSelectedData(data);
+                      setShowModal(true);
+                    }}>
+                      <FaChartPie fill='#c6e802' />
                     </Button>
-                    <Button
-                      className="table-button"
-                      style={{ backgroundColor: "#fc3f4c" }}
-                      onClick={() => deleteSavedData(index)}
-                    >
-                      <MdDelete />
+                    <Button className="btnDelete tableBtns" onClick={() => deleteSavedData(index)}>
+                      <MdDelete fill='red' />
                     </Button>
-                  </td>
-                </tr>
+                  </CenteredTableCell>
+                  <StyledTableCell></StyledTableCell>
+                </StyledTableRow>
               ))}
-          </tbody>
-        </table>
-      </div>
+          </TableBody>
+        </Table>
+      </TableContainer>
       <MonthlyChart
         data={selectedData}
         showModal={showModal}
